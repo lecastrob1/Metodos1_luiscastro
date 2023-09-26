@@ -141,20 +141,19 @@ def GetWeightsGHer(n):
 
 def funci(M,R,T,x):
     return 4*(np.pi)*(((M)/(2*(np.pi)*R*T))**(3/2))*(x**2)*(np.e**((-M*(x**2))/(2*R*T)))
-
-#1
+#1 
 def inte(n):
  raices=GetAllRootsGLag(n)
  pesos=GetWeightsGLag(n)
- print(raices)
- print(pesos)
+
  M=1
  R=1
  T=1
  I = 0
- for i in range(n-1):
+ for i in range(n):
     I += pesos[i]*funci(M,R,T,raices[i])
  return I
+
 #2
 M=1
 R=1
@@ -165,7 +164,7 @@ u=np.linspace(1,10,10)
 T_values=np.linspace(1,100,10)
 for a in T_values:
     y = funci(M,R,a,u)
-    plt.plot(u, y, label=f'T = {a}')
+    plt.plot(a, y, label=f'T = {a}')
 #3
 def funcimed(M,R,T,x):
     return 4*(np.pi)*(((M)/(2*(np.pi)*R*T))**(3/2))*(x**3)*(np.e**((-M*(x**2))/(2*R*T)))
@@ -177,13 +176,14 @@ def inteavg(n,T):
  M=1
  R=1
  I = 0
- for i in range(n-1):
+ for i in range(n):
     I += pesos[i]*funcimed(M,R,T,raices[i])
  return I
 avlu=[]
-for a in T_values:    
-    y = inteavg(5,a)
-    avlu.append(y)
+for o in T_values:    
+    yvel = inteavg(5,o)
+    plt.plot(o, yvel)
+
     
 #4
 def funcirms(M,R,T,x):
@@ -196,17 +196,19 @@ def interms(n,T):
  M=1
  R=1
  I = 0
- for i in range(n-1):
-    I += pesos[i]*funcimed(M,R,T,raices[i])
+ for i in range(n):
+    I += pesos[i]*funcirms(M,R,T,raices[i])
  return I
-tavr=[]
-for a in T_values:    
-    y = interms(5,a)
-    tavr.append(y)
-    
-plt.plot(u, tavr)
-plt.legend()
-plt.show()
+
+for p in T_values:    
+    yrms = np.sqrt(interms(6,p))
+    plt.plot(p, yrms)
+
+
+
+
+
+
 
 
 
