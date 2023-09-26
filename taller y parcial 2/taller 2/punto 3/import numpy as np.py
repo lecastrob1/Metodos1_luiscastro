@@ -149,11 +149,11 @@ def inte(n):
  M=1
  R=1
  T=1
+ 
  I = 0
  for i in range(n):
-    I += pesos[i]*funci(M,R,T,raices[i])
+    I += pesos[i]*funci(M,R ,T,raices[i])
  return I
-
 #2
 M=1
 R=1
@@ -164,7 +164,10 @@ u=np.linspace(1,10,10)
 T_values=np.linspace(1,100,10)
 for a in T_values:
     y = funci(M,R,a,u)
-    plt.plot(a, y, label=f'T = {a}')
+    plt.plot(u, y)
+    
+   
+
 #3
 def funcimed(M,R,T,x):
     return 4*(np.pi)*(((M)/(2*(np.pi)*R*T))**(3/2))*(x**3)*(np.e**((-M*(x**2))/(2*R*T)))
@@ -179,15 +182,22 @@ def inteavg(n,T):
  for i in range(n):
     I += pesos[i]*funcimed(M,R,T,raices[i])
  return I
-avlu=[]
+o_values = []
+avly_values = []
+
 for o in T_values:    
-    yvel = inteavg(5,o)
-    plt.plot(o, yvel)
+    avly = inteavg(5,o)
+    o_values.append(o)
+    avly_values.append(avly)
+
+plt.plot(o_values, avly_values)
+plt.show()
+
 
     
 #4
 def funcirms(M,R,T,x):
-    return 4*(np.pi)*(((M)/(2*(np.pi)*R*T))**(3/2))*(x**4)*(np.e**((-M*(x**2))/(2*R*T)))
+    return sym.expand(4*(np.pi)*(((M)/(2*(np.pi)*R*T))**(3/2))*(x**4)*(np.e**((-M*(x**2))/(2*R*T))))
 
 def interms(n,T):
  raices=GetAllRootsGLag(n)
@@ -199,11 +209,16 @@ def interms(n,T):
  for i in range(n):
     I += pesos[i]*funcirms(M,R,T,raices[i])
  return I
-
+p_values = []
+rzyrms_values = []
 for p in T_values:    
-    yrms = np.sqrt(interms(6,p))
-    plt.plot(p, yrms)
+    yrms = (interms(6,p))
+    rzyrms=np.sqrt(yrms)
+    p_values.append(p)
+    rzyrms_values.append(rzyrms)
 
+plt.plot(p_values, rzyrms_values)
+plt.show()
 
 
 
