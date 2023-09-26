@@ -142,21 +142,71 @@ def GetWeightsGHer(n):
 def funci(M,R,T,x):
     return 4*(np.pi)*(((M)/(2*(np.pi)*R*T))**(3/2))*(x**2)*(np.e**((-M*(x**2))/(2*R*T)))
 
-
-M=1
-R=1
-T=1
-n =6
-
+#1
 def inte(n):
  raices=GetAllRootsGLag(n)
  pesos=GetWeightsGLag(n)
-
+ print(raices)
+ print(pesos)
+ M=1
+ R=1
+ T=1
  I = 0
- for i in range(n):
+ for i in range(n-1):
     I += pesos[i]*funci(M,R,T,raices[i])
  return I
-print(inte(8))
+#2
+M=1
+R=1
+T=1
+I = 0
+
+u=np.linspace(1,10,10)
+T_values=np.linspace(1,100,10)
+for a in T_values:
+    y = funci(M,R,a,u)
+    plt.plot(u, y, label=f'T = {a}')
+#3
+def funcimed(M,R,T,x):
+    return 4*(np.pi)*(((M)/(2*(np.pi)*R*T))**(3/2))*(x**3)*(np.e**((-M*(x**2))/(2*R*T)))
+
+def inteavg(n,T):
+ raices=GetAllRootsGLag(n)
+ pesos=GetWeightsGLag(n)
+
+ M=1
+ R=1
+ I = 0
+ for i in range(n-1):
+    I += pesos[i]*funcimed(M,R,T,raices[i])
+ return I
+avlu=[]
+for a in T_values:    
+    y = inteavg(5,a)
+    avlu.append(y)
+    
+#4
+def funcirms(M,R,T,x):
+    return 4*(np.pi)*(((M)/(2*(np.pi)*R*T))**(3/2))*(x**4)*(np.e**((-M*(x**2))/(2*R*T)))
+
+def interms(n,T):
+ raices=GetAllRootsGLag(n)
+ pesos=GetWeightsGLag(n)
+
+ M=1
+ R=1
+ I = 0
+ for i in range(n-1):
+    I += pesos[i]*funcimed(M,R,T,raices[i])
+ return I
+tavr=[]
+for a in T_values:    
+    y = interms(5,a)
+    tavr.append(y)
+    
+plt.plot(u, tavr)
+plt.legend()
+plt.show()
 
 
 
