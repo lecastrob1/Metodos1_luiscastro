@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+#4.1
 N = 1000000
 a = 0
 b = np.pi
@@ -28,7 +28,7 @@ plt.plot(enes,rai,label='1/swrt()')
 plt.legend()
 plt.show()
 
-#
+#4.2
 a=0
 b=2*np.pi
 N = 1000000
@@ -57,7 +57,7 @@ def inerci(x):
 iner = inerci(ger)
 totaienr= (b-a)*sum(iner)/N
 print(totaienr)
-#
+#4.3
 R = 1
 x = np.random.uniform(-R,R,N)
 y = np.random.uniform(-R,R,N)
