@@ -19,7 +19,7 @@ for i in range(k):
   mu = np.dot(q.T, np.dot(A, q))
 delta=mu
 # Mostrar el resultado
-print("El valor propiomaor aproximado es:", delta)
+print("El valor propio mayor aproximado es:", delta)
 print("El vector propio asociado es:", q)
 
 def valpeq(A,q):
